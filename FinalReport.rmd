@@ -51,7 +51,7 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-
+58% of the women who have aids have taken the drug while 41% of them have it while have only taken the placebo. It was almost the same in the clinical trials where nothing happened. 
 
 ## Inferential Results
 
