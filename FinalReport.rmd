@@ -10,7 +10,7 @@ require(tidyverse)
 require(tigerstats)
 triUmp <-read.csv(file="triUmpsal.csv",header=TRUE)
 mydata <- select(triUmp, c(2:6))
-mydataF <- filter(mydata,gender==("F"))
+women <- filter(triUmp,gender==("F"))
 ```
 
 # Introduction
@@ -34,22 +34,24 @@ A new  preventative aides drug (triUmpsal) is under test in clinical trials. Con
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
 
 ```{r}
-barchartGC(~treatment + infected,data=mydataF)
-barchartGC(~treatment + infected,data=mydataF, type="percent")
+barchartGC(~infected + treatment,data=women)
+barchartGC(~infected + treatment,data=women, type="percent")
 
 ```
 
-In this barchart for the study of this aids drug we can see that the drug does seem effective as the rate for those who have caught aids while on the drug are exeptionaly low around 5%. While the people taking the placebo have caught the disease and stand at about 80%.
+60% of the women who took the drug are catching aids while 40% of the women who are taking the placebo caught it. Its almost as if this drug is causing the women to  become more suseptable to catching the disease. If I were a Dr. I would not prescribe this to a female client. 
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ```{r}
-table1 <- xtabs(~infected + treatment,data=mydataF)
+table1 <- xtabs(~infected + treatment,data=women)
 rowPerc(table1)
 colPerc(table1)
 ```
+
+
 
 ## Inferential Results
 
@@ -59,6 +61,7 @@ chisq.test(table1)
 chisqtestGC(table1)
 fisher.test(table1)
 ```
+
 The odds of getting aids when taking the drug is 1 1/2 times more likely than not taking the drug.
 
 # Discussion and Conclusion
